@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/AdapterHistorial.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/AdapterMenuLateral.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/AdapterPersonalizado.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/ConsultaBBDD.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/ConsultaHistorial.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/ConsultaTelefono.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/Historial.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/Informacion.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/MainActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/PantallaCarga.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/Recurso.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/SplashScreen.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gsmcontrol/WebActivity.java" charset="UTF-8" />
+  </component>
+</project>

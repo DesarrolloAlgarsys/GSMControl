@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="opciones">
+        <item>Inicio</item>
+        <item>Admin</item>
+        <item>Historial</item>
+        <item>Información</item>
+    </string-array>
+    <color name="fila_ko">#FF4500</color>
+    <color name="fila_ok">#98FB98</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="action_settings">Settings</string>
+    <string name="adelante">-></string>
+    <string name="app_name">GSMControl</string>
+    <string name="ask_number">Introduzca su número de teléfono</string>
+    <string name="atras">&lt;-</string>
+    <string name="call_confirmation">"¿Llamar a "</string>
+    <string name="cambio_numero">Cambiar número</string>
+    <string name="checking_number">Verificando número</string>
+    <string name="data_ok">Datos cargados correctamente</string>
+    <string name="history_empty">Ningún acceso realizado por</string>
+    <string name="history_ok">Historial cargado correctamente</string>
+    <string name="info_link">www.gsmcontrol.es</string>
+    <string name="info_text">GSMControl controla el acceso a edificios, gestiona la activación de recursos (puertas, pistas deportivas, encendido de luces) mediante una llamada perdida a un número de teléfono.\n\nSi eres un usuario, a través de la aplicación podrás abrir cualquier puerta de la que estéis autorizados o activar cualquier recursos al que tengais permiso, controlar el histórico de accesos y gestionar vuestra cuenta de usuario.\n\nPara los administradores de recursos (puertas, luces, pistas deportivas) podréis llevar toda la gestión de usuarios (altas y bajas), permisos (configurar horarios y permisos), controlar los accesos, etc, etc desde la app con tan solo un click.\n\nMas info en:</string>
+    <string name="last_access">últimos accesos de</string>
+    <string name="llamar">Llamar</string>
+    <string name="loading_history">Cargando historial</string>
+    <string name="login">Inicio de sesión</string>
+    <string name="make_call">Realizar llamada</string>
+    <string name="no">No</string>
+    <string name="no_internet">No dispone de conexión a Internet. Revise su configuración y reinicie la aplicación.</string>
+    <string name="no_resource">Ningún recurso asociado al número</string>
+    <string name="resources">Recursos de</string>
+    <string name="title_activity_historial">Historial</string>
+    <string name="title_activity_informacion">Informacion</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_mi_array_adapter">MiArrayAdapter</string>
+    <string name="title_activity_pantalla_carga">PantallaCarga</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="validation_alert">Aviso de verificación</string>
+    <string name="validation_text">Para verificar el número introducido, debe realizarse una llamada gratuita.\n¿Desea continuar?</string>
+    <string name="wrong_number">Error. El número introducido no es correcto.</string>
+    <string name="yes">Sí</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>
