@@ -29,7 +29,7 @@
     <string name="resources">Recursos de</string>
     <string name="no_resource">Ningún recurso asociado al número</string>
     <string name="make_call">Realizar llamada</string>
-    <string name="call_confirmation">"¿Llamar a "</string>
+    <string name="call_confirmation">"Llamar a "</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="ask_number">Introduzca su número de teléfono</string>
@@ -39,7 +39,7 @@
     <string name="wrong_number">Error. El número introducido no es correcto.</string>
     <string name="history_ok">Historial cargado correctamente</string>
     <string name="history_empty">Ningún acceso realizado por</string>
-    <string name="last_access">últimos accesos de</string>
+    <string name="last_access">Últimos accesos de</string>
     <string name="info_text">GSMControl controla el acceso a edificios, gestiona la activación de recursos (puertas, pistas deportivas, encendido de luces) mediante una llamada perdida a un número de teléfono.\n\nSi eres un usuario, a través de la aplicación podrás abrir cualquier puerta de la que estéis autorizados o activar cualquier recursos al que tengais permiso, controlar el histórico de accesos y gestionar vuestra cuenta de usuario.\n\nPara los administradores de recursos (puertas, luces, pistas deportivas) podréis llevar toda la gestión de usuarios (altas y bajas), permisos (configurar horarios y permisos), controlar los accesos, etc, etc desde la app con tan solo un click.\n\nMas info en:</string>
     <string name="info_link">www.gsmcontrol.es</string>
     <string name="loading_history">Cargando historial</string>

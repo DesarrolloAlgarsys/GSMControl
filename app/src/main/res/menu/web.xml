@@ -3,11 +3,6 @@
     tools:context="com.example.gsmcontrol.WebActivity" >
 
     <item
-        android:id="@+id/inicio"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="Inicio"/>
-    <item
         android:id="@+id/history"
         android:orderInCategory="100"
         android:showAsAction="never"
@@ -17,10 +12,5 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="Información"/>
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
 
 </menu>

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,12 +20,6 @@ import app.gsmcontrol.R;
 
 public class Informacion extends Activity {
 
-	// Menú lateral
-	DrawerLayout drawerLayout;
-	String[] opciones;
-	ArrayList<ItemMenu> opcionesMenu = new ArrayList<ItemMenu>();
-	ListView listView;
-
 	String tel;
 
 	@Override
@@ -34,69 +29,6 @@ public class Informacion extends Activity {
 
 		// Recuperamos el teléfono pasado.
 		tel = this.getIntent().getStringExtra("telefono");
-
-		// Recuperamos las opciones del menú lateral
-		opciones = this.getResources().getStringArray(R.array.opciones);
-
-		// Menú lateral
-		listView = (ListView) findViewById(R.id.list_view4);
-
-		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout4);
-
-		// Opciones del menú
-		opcionesMenu.add(new ItemMenu(opciones[0], R.drawable.movil));
-		opcionesMenu.add(new ItemMenu(opciones[1], R.drawable.admin));
-		opcionesMenu.add(new ItemMenu(opciones[2], R.drawable.historial));
-		opcionesMenu.add(new ItemMenu(opciones[3], R.drawable.info));
-
-		AdapterMenuLateral adaptadorMenu = new AdapterMenuLateral(this,
-				android.R.layout.simple_list_item_1, opcionesMenu);
-
-		listView.setAdapter(adaptadorMenu);
-
-		listView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView arg0, View arg1, int arg2,
-					long arg3) {
-				switch (arg2) {
-				case 0:
-					// Se vuelve a la parte inicial de la aplicación, terminando este activity
-					finish();
-					break;
-
-				case 1:
-					// Abrimos la Activity que contiene el WebBrowser hacia la
-					// administración de GSMControl. Le pasamos el teléfono para
-					// las opciones del menú lateral del Web Browser integrado y
-					// finalizamos esta Activity para evitar que quede en
-					// segundo plano eternamente
-					Intent web = new Intent(Informacion.this, WebActivity.class);
-					web.putExtra("telefono", tel);
-					startActivity(web);
-					finish();
-					break;
-
-				case 2:
-					// Se abriría un historial con los accesos a los recursos
-					// El historial de acceso está en la BBDD. Mostrar últimos 15 accesos.
-					// De esto se encargará el Activity PantallaCarga.
-					Intent carga = new Intent(Informacion.this, PantallaCarga.class);
-					carga.putExtra("telefono", tel);
-					startActivity(carga);
-					finish();
-					break;
-
-				case 3:
-					// No hacemos nada en esta opción desde aquí
-					break;
-				default:
-					break;
-				}
-
-				drawerLayout.closeDrawers();
-			}
-		});
 
 		// Cambiamos el título de la barra por el de la aplicación
 		this.getActionBar().setTitle(R.string.app_name);
@@ -126,21 +58,44 @@ public class Informacion extends Activity {
 		});
 	}
 
-	// Menú lateral
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.informacion, menu);
+		return true;
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			if (drawerLayout.isDrawerOpen(listView)) {
-				drawerLayout.closeDrawers();
-			} else {
-				drawerLayout.openDrawer(listView);
-				// TODO: Animación de icono de menú
-				// http://stackoverflow.com/questions/26230417/animation-actionbar-material-design
-			}
-			return true;
+			case android.R.id.home:
+				finish();
+				break;
+			case R.id.inicio:
+				Intent inicio = new Intent(this,MainActivity.class);
+				startActivity(inicio);
+				break;
+			case R.id.admin:
+				// Abrimos la Activity que contiene el WebBrowser hacia la
+				// administración de GSMControl. Le pasamos el teléfono para
+				// las opciones del menú lateral del Web Browser integrado y
+				// finalizamos esta Activity para evitar que quede en
+				// segundo plano eternamente
+				Intent web = new Intent(Informacion.this, WebActivity.class);
+				web.putExtra("telefono", tel);
+				startActivity(web);
+				finish();
+				break;
+			case R.id.history:
+				// Se abriría un historial con los accesos a los recursos
+				// El historial de acceso está en la BBDD. Mostrar últimos 15 accesos.
+				// De esto se encargará el Activity PantallaCarga.
+				Intent carga = new Intent(Informacion.this, PantallaCarga.class);
+				carga.putExtra("telefono", tel);
+				startActivity(carga);
+				finish();
+				break;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 

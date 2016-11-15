@@ -3,11 +3,6 @@
     tools:context="com.example.gsmcontrol.Informacion" >
 
     <item
-        android:id="@+id/inicio"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="Inicio"/>
-    <item
         android:id="@+id/admin"
         android:orderInCategory="100"
         android:showAsAction="never"

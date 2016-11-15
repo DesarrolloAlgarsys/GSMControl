@@ -32,8 +32,8 @@ import app.gsmcontrol.R;
 public class ActivityComprobaciones extends Activity implements gsmcontrol.ConsultaTelefono.LoadingTaskFinishedListener {
 
 	//Telefono para pruebas. Al finalizar pruebas, dejar en blanco
-	//String tel ="680938923";
-	String tel = "";
+	String tel ="610228472";
+	//String tel = "";
 	boolean bandera = false;
 
 	@Override

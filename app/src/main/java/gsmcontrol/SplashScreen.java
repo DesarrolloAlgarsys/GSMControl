@@ -19,8 +19,8 @@ public class SplashScreen extends Activity implements
 		LoadingTaskFinishedListener {
 
 	//Telefono para pruebas. Al finalizar pruebas, dejar en blanco
-	//String tel ="680938923";
-	String tel = "";
+	String tel ="610228472";
+	//String tel = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

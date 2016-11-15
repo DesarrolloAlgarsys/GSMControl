@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,10 +25,6 @@ import app.gsmcontrol.R;
 
 public class Historial extends Activity implements LoadingTaskFinishedListener {
 
-	DrawerLayout drawerLayout;
-	String[] opciones;
-	ArrayList<ItemMenu> opcionesMenu = new ArrayList<ItemMenu>();
-	ListView listView;
 	String tel;
 
 	@Override
@@ -43,74 +40,8 @@ public class Historial extends Activity implements LoadingTaskFinishedListener {
 			Toast.makeText(
 					this,R.string.no_internet,Toast.LENGTH_LONG).show();
 		} else {
-
 			Toast.makeText(this, R.string.history_ok, Toast.LENGTH_SHORT).show();
 		}
-		// Recuperamos las opciones del menú lateral
-		opciones = this.getResources().getStringArray(R.array.opciones);
-
-		// Menú lateral
-		listView = (ListView) findViewById(R.id.list_view2);
-
-		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout2);
-
-		// Opciones del menú
-		opcionesMenu.add(new ItemMenu(opciones[0], R.drawable.movil));
-		opcionesMenu.add(new ItemMenu(opciones[1], R.drawable.admin));
-		opcionesMenu.add(new ItemMenu(opciones[2], R.drawable.historial));
-		opcionesMenu.add(new ItemMenu(opciones[3], R.drawable.info));
-
-		AdapterMenuLateral adaptadorMenu = new AdapterMenuLateral(this,
-				android.R.layout.simple_list_item_1, opcionesMenu);
-
-		listView.setAdapter(adaptadorMenu);
-
-		listView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView arg0, View arg1, int arg2,
-					long arg3) {
-				switch (arg2) {
-				case 0:
-					// Se vuelve a la parte inicial de la aplicación, terminando este activity
-					finish();
-					break;
-
-				case 1:
-					// Abrimos la Activity que contiene el WebBrowser hacia la
-					// administración de GSMControl. Le pasamos el teléfono para
-					// las opciones del menú lateral del Web Browser integrado y
-					// finalizamos esta Activity para evitar que quede en
-					// segundo plano eternamente
-					Intent web = new Intent(Historial.this, WebActivity.class);
-					web.putExtra("telefono", tel);
-					startActivity(web);
-					finish();
-					break;
-
-				case 2:
-					// No hacemos nada en esta opción desde el Historial
-					break;
-
-				case 3:
-					// Abrimos la Activity que contiene la información de la
-					// aplicación y finalizamos esta Activity para evitar que
-					// quede en segundo plano eternamente. Le pasamos el
-					// teléfono para el menú lateral de dicha Activity
-					Intent info = new Intent(Historial.this, Informacion.class);
-					info.putExtra("telefono", tel);
-					startActivity(info);
-					finish();
-					break;
-
-				default:
-					break;
-				}
-
-				drawerLayout.closeDrawers();
-			}
-		});
-
 		// Cambiamos el título de la barra por el de la aplicación
 		this.getActionBar().setTitle(R.string.app_name);
 
@@ -145,17 +76,36 @@ public class Historial extends Activity implements LoadingTaskFinishedListener {
 		}
 	}
 
-	// Menú lateral
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.historial, menu);
+		return true;
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			if (drawerLayout.isDrawerOpen(listView)) {
-				drawerLayout.closeDrawers();
-			} else {
-				drawerLayout.openDrawer(listView);
-			}
-			return true;
+			case android.R.id.home:
+				finish();
+				break;
+			case R.id.admin:
+				// Abrimos la Activity que contiene el WebBrowser hacia la
+				// administración de GSMControl. Le pasamos el teléfono para
+				// las opciones del menú lateral del Web Browser integrado y
+				// finalizamos esta Activity para evitar que quede en
+				// segundo plano eternamente
+				Intent web = new Intent(Historial.this, WebActivity.class);
+				web.putExtra("telefono", tel);
+				startActivity(web);
+				finish();
+				break;
+			case R.id.info:
+				Intent info = new Intent(Historial.this, Informacion.class);
+				info.putExtra("telefono", tel);
+				startActivity(info);
+				finish();
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
