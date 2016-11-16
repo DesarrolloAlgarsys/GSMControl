@@ -15,7 +15,7 @@
     <string name="app_name">GSMControl</string>
     <string name="ask_number">Introduzca su número de teléfono</string>
     <string name="atras">&lt;-</string>
-    <string name="call_confirmation">"Llamar a "</string>
+    <string name="call_confirmation">Llamar a </string>
     <string name="cambio_numero">Cambiar número</string>
     <string name="checking_number">Verificando número</string>
     <string name="data_ok">Datos cargados correctamente</string>
@@ -38,7 +38,7 @@
     <string name="title_activity_mi_array_adapter">MiArrayAdapter</string>
     <string name="title_activity_pantalla_carga">PantallaCarga</string>
     <string name="title_activity_web">WebActivity</string>
-    <string name="validation_alert">Aviso de verificación</string>
+    <string name="validation_call">Llamada de verificación</string>
     <string name="validation_text">Para verificar el número introducido, debe realizarse una llamada gratuita.\n¿Desea continuar?</string>
     <string name="wrong_number">Error. El número introducido no es correcto.</string>
     <string name="yes">Sí</string>

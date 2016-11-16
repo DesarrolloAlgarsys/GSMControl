@@ -35,6 +35,7 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 	String tel ="610228472";
 	//String tel = "";
 	boolean bandera = false;
+	Bundle extras;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,15 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 		ActivityComprobaciones.this.getActionBar().hide();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_comprobaciones);
+		extras=getIntent().getExtras();
 
-		// Intentamos leer el fichero.
-		leerFichero();
-
+		if (extras!=null){
+			tel="";
+		}
+		else {
+			// Intentamos leer el fichero.
+			leerFichero();
+		}
 		// En caso de no existir el fichero:
 		// Comprobaremos el número en la base de datos y, en caso de ser
 		// correcto, lo guardamos en el fichero e iniciamos la SplashScreen
@@ -162,9 +168,9 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-		alert.setIcon(android.R.drawable.ic_dialog_alert);
+		alert.setIcon(android.R.drawable.sym_action_call);
 
-		alert.setTitle(R.string.validation_alert);
+		alert.setTitle(R.string.validation_call);
 		alert.setMessage(R.string.validation_text);
 
 		alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -283,8 +289,7 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 
 	// Con esta función, se da paso a la SplashScreen
 	private void startApp() {
-		Intent intent = new Intent(ActivityComprobaciones.this,
-				SplashScreen.class);
+		Intent intent = new Intent(ActivityComprobaciones.this,SplashScreen.class);
 		startActivity(intent);
 		finish(); // Finalizamos para que no se pueda volver a la pantalla
 	}

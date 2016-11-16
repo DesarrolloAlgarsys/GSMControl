@@ -26,11 +26,9 @@ public class PantallaCarga extends Activity implements LoadingTaskFinishedListen
 
 		// Si no está conectado, informa de ello
 		if (!isOnline()) {
-			Toast.makeText(
-					this,R.string.no_internet,Toast.LENGTH_LONG).show();
+			Toast.makeText(this,R.string.no_internet,Toast.LENGTH_LONG).show();
 		} else {
-			Toast.makeText(this, R.string.loading_history, Toast.LENGTH_LONG)
-					.show();
+			Toast.makeText(this, R.string.loading_history, Toast.LENGTH_LONG).show();
 		}
 
 		// Recuperamos el número de teléfono

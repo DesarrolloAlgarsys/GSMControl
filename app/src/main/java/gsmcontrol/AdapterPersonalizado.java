@@ -41,7 +41,7 @@ public class AdapterPersonalizado extends ArrayAdapter<Recurso> {
 		nombreRecurso = (TextView) item.findViewById(R.id.tv_nombre);
 
 		// Cambiamos el tamaño de los textos
-		nombreRecurso.setTextSize(15);
+		nombreRecurso.setTextSize(25);
 
 		// Asignamos a cada TextView lo que corresponda
 		nombreRecurso.setText(recurso.getNombre());

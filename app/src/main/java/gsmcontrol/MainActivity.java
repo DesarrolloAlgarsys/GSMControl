@@ -104,7 +104,29 @@ public class MainActivity extends Activity implements LoadingTaskFinishedListene
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				finish();
+				AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+				builder.setTitle(R.string.app_exit);
+				builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						finish();
+					}
+				});
+				builder.create().show();
+				break;
+			case R.id.cambio_numero:
+				//Abrimos la Activity inicial, en la que se preguntará de nuevo
+				// el teléfono. Enviamos una bandera para que la Activity borre
+				// el fichero donde está guardado el teléfono anterior y escriba uno nuevo
+				Intent number = new Intent(MainActivity.this, ActivityComprobaciones.class);
+				number.putExtra("Cambio","nuevo");
+				startActivity(number);
 				break;
 			case R.id.admin:
 				// Abrimos la Activity que contiene el WebBrowser hacia la
@@ -156,7 +178,8 @@ public class MainActivity extends Activity implements LoadingTaskFinishedListene
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
 		alert.setTitle(R.string.make_call);
-		alert.setMessage(R.string.call_confirmation + recurso.getNombre() + "?");
+		String msg = "¿Activar " + recurso.getNombre() + "?";
+		alert.setMessage(msg);
 
 		alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {

@@ -37,7 +37,8 @@
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="italic|bold" />
+            android:textStyle="italic|bold"
+            android:paddingBottom="5dp"/>
 
         <ListView
             android:id="@+id/lv_recursos"

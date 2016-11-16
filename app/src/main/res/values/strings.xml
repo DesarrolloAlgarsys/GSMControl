@@ -29,11 +29,11 @@
     <string name="resources">Recursos de</string>
     <string name="no_resource">Ningún recurso asociado al número</string>
     <string name="make_call">Realizar llamada</string>
-    <string name="call_confirmation">"Llamar a "</string>
+    <string name="call_confirmation">Llamar a </string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="ask_number">Introduzca su número de teléfono</string>
-    <string name="validation_alert">Aviso de verificación</string>
+    <string name="validation_call">Llamada de verificación</string>
     <string name="validation_text">Para verificar el número introducido, debe realizarse una llamada gratuita.\n¿Desea continuar?</string>
     <string name="checking_number">Verificando número</string>
     <string name="wrong_number">Error. El número introducido no es correcto.</string>
@@ -44,5 +44,9 @@
     <string name="info_link">www.gsmcontrol.es</string>
     <string name="loading_history">Cargando historial</string>
     <string name="login">Inicio de sesión</string>
+    <string name="app_exit">¿Quieres salir de la aplicación?</string>
+    <string name="info">Información</string>
+    <string name="admin">Admin</string>
+    <string name="history">Historial</string>
 
 </resources>

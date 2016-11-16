@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import app.gsmcontrol.R;
@@ -39,13 +40,13 @@ public class AdapterHistorial extends ArrayAdapter<Recurso> {
 		TextView nombreRecurso;
 		TextView fechaRecurso;
 		TextView horaRecurso;
-		ImageView imagen;
+		LinearLayout fondo;
 
 		// Accedemos a los TextViews de la distribución
 		nombreRecurso = (TextView) item.findViewById(R.id.tv_historial);
 		fechaRecurso = (TextView) item.findViewById(R.id.tv_fecha);
 		horaRecurso = (TextView) item.findViewById(R.id.tv_hora);
-		imagen = (ImageView) item.findViewById(R.id.imagen_historial);
+		fondo = (LinearLayout)item.findViewById(R.id.LinearLayout1);
 
 		// Cambiamos el tamaño y el color de los textos
 		nombreRecurso.setTextSize(15);
@@ -72,15 +73,11 @@ public class AdapterHistorial extends ArrayAdapter<Recurso> {
 
 		// Asignamos un estilo u otro dependiendo de si está OK o KO
 		if (recurso.getEstado().equalsIgnoreCase("OK")) {
-			fechaRecurso.setTextColor(Color.parseColor("#088A29"));
-			horaRecurso.setTextColor(Color.parseColor("#088A29"));
-			nombreRecurso.setTextColor(Color.parseColor("#088A29"));
-			imagen.setImageResource(R.drawable.ok);
+			fondo.setBackgroundColor(Color.parseColor("#9FF781"));
+			fondo.setAlpha((float) 0.7);
 		} else {
-			fechaRecurso.setTextColor(Color.RED);
-			horaRecurso.setTextColor(Color.RED);
-			nombreRecurso.setTextColor(Color.RED);
-			imagen.setImageResource(R.drawable.ko);
+			fondo.setBackgroundColor(Color.parseColor("#FE2E2E"));
+			fondo.setAlpha((float) 0.7);
 		}
 
 		return item;

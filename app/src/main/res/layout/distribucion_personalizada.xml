@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/activity_horizontal_margin"
-    android:orientation="vertical" >
+    android:orientation="horizontal"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
 
     <ImageView
         android:id="@+id/imageView1"
@@ -19,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Large Text"
+        android:paddingLeft="10dp"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>
