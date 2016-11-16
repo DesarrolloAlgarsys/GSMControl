@@ -191,14 +191,13 @@ public class MainActivity extends Activity implements LoadingTaskFinishedListene
 	public void mostrarDialog(final Recurso recurso) {
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-		String msg = "¿Activar " + recurso.getNombre() + "?";
+		String msg = getString(R.string.activate_confirm) + recurso.getNombre() + "?";
 		alert.setTitle(msg);
 
 		alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				try {
-					startActivity(new Intent(Intent.ACTION_CALL, Uri
-							.parse("tel:" + recurso.getTelefono())));
+					startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + recurso.getTelefono())));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

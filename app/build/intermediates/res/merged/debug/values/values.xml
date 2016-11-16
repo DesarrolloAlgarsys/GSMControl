@@ -11,6 +11,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <string name="action_settings">Settings</string>
+    <string name="activate_confirm">"¿Activar "</string>
     <string name="adelante">-></string>
     <string name="admin">Admin</string>
     <string name="app_exit">¿Quieres salir de la aplicación?</string>
@@ -21,6 +22,7 @@
     <string name="change_number">¿Quieres cambiar el número de teléfono?</string>
     <string name="checking_number">Verificando número</string>
     <string name="data_ok">Datos cargados correctamente</string>
+    <string name="dates">"Fechas autorizadas: "</string>
     <string name="history">Historial</string>
     <string name="history_empty">Ningún acceso realizado por</string>
     <string name="history_ok">Historial cargado correctamente</string>
@@ -35,6 +37,7 @@
     <string name="no_internet">No dispone de conexión a Internet. Revise su configuración y reinicie la aplicación.</string>
     <string name="no_resource">Ningún recurso asociado al número</string>
     <string name="resources">Recursos de</string>
+    <string name="schedule">"Horario: "</string>
     <string name="title_activity_historial">Historial</string>
     <string name="title_activity_informacion">Informacion</string>
     <string name="title_activity_main">MainActivity</string>
@@ -43,6 +46,7 @@
     <string name="title_activity_web">WebActivity</string>
     <string name="validation_call">Llamada de verificación</string>
     <string name="validation_text">Para verificar el número introducido, debe realizarse una llamada gratuita.\n¿Desea continuar?</string>
+    <string name="week_day">"Día de la semana: "</string>
     <string name="wrong_number">Error. El número introducido no es correcto.</string>
     <string name="yes">Sí</string>
     <style name="AppBaseTheme" parent="android:Theme.Light">

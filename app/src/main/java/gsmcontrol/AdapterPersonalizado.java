@@ -54,14 +54,12 @@ public class AdapterPersonalizado extends ArrayAdapter<Recurso> {
 
 		// Asignamos a cada TextView lo que corresponda
 		nombreRecurso.setText(recurso.getNombre());
-		horarioRecurso.setText("Horario");
-		diasRecurso.setText("Dias");
-		fechasRecurso.setText("Fechas");
-		/*
-		horarioRecurso.setText(recurso.getHorario());
-		diasRecurso.setText(recurso.getDias());
-		fechasRecurso.setText(recurso.getFechas());
-		*/
+		String schedule = contexto.getString(R.string.schedule) + "no disponible"; //recurso.getHorario()
+		horarioRecurso.setText(schedule);
+		String days = contexto.getString(R.string.week_day) + "no disponible"; //recurso.getDias()
+		diasRecurso.setText(days);
+		String dates = contexto.getString(R.string.dates) + "no disponible"; //recurso.getFechas()
+		fechasRecurso.setText(dates);
 
 		return item;
 	}

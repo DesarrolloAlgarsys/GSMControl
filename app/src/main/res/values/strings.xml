@@ -47,5 +47,9 @@
     <string name="admin">Admin</string>
     <string name="history">Historial</string>
     <string name="change_number">¿Quieres cambiar el número de teléfono?</string>
+    <string name="schedule">"Horario: "</string>
+    <string name="week_day">"Día de la semana: "</string>
+    <string name="dates">"Fechas autorizadas: "</string>
+    <string name="activate_confirm">"¿Activar "</string>
 
 </resources>
