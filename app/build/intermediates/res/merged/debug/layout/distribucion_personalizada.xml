@@ -13,16 +13,44 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/estilo_listview"
-        android:src="@drawable/icono_puertas" />
+        android:src="@drawable/icono_puertas"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/tv_nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Large Text"
-        android:paddingLeft="10dp"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
+        <TextView
+            android:id="@+id/tv_horario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small Text"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/tv_dias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small Text"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/tv_fechas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small Text"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
 </LinearLayout>

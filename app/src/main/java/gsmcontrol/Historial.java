@@ -5,7 +5,9 @@ import gsmcontrol.ConsultaHistorial.LoadingTaskFinishedListener;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -88,6 +90,28 @@ public class Historial extends Activity implements LoadingTaskFinishedListener {
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				finish();
+				break;
+			case R.id.cambio_numero:
+				//Abrimos la Activity inicial, en la que se preguntará de nuevo
+				// el teléfono. Enviamos una bandera para que la Activity borre
+				// el fichero donde está guardado el teléfono anterior y escriba uno nuevo
+				AlertDialog.Builder NumberBuilder = new AlertDialog.Builder(Historial.this);
+				NumberBuilder.setTitle(R.string.change_number);
+				NumberBuilder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				NumberBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Intent number = new Intent(Historial.this, ActivityComprobaciones.class);
+						number.putExtra("Cambio","nuevo");
+						startActivity(number);
+					}
+				});
+				NumberBuilder.create().show();
 				break;
 			case R.id.admin:
 				// Abrimos la Activity que contiene el WebBrowser hacia la

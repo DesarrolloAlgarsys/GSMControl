@@ -11,16 +11,16 @@
         android:id="@+id/history"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Historial"/>
+        android:title="@string/history"/>
     <item
         android:id="@+id/admin"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Admin"/>
+        android:title="@string/admin"/>
     <item
         android:id="@+id/info"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Información"/>
+        android:title="@string/info"/>
 
 </menu>

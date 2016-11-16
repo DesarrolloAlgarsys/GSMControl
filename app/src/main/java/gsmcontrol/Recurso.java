@@ -9,9 +9,13 @@ public class Recurso implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// Nombre, teléfono, fecha y estado, para realizar dos constructores.
+	// Nombre, teléfono, horario disponible, dias disponibles, fechas
+	// disponibles,  fecha y estado, para realizar dos constructores.
 	private String nombre;
 	private String telefono;
+	private String horario;
+	private String dias;
+	private String fechas;
 	private String fecha;
 	private String estado = ""; // Inicializamos el estado para la condición del
 								// AdapterPersonalizado
@@ -22,6 +26,16 @@ public class Recurso implements Serializable {
 		this.telefono = telefono;
 	}
 
+/*
+	public Recurso(String nombre, String telefono, String horario, String dias, String fechas) {
+		super();
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.horario = horario;
+		this.dias = dias;
+		this.fechas = fechas;
+	}
+*/
 	public Recurso(String nombre, String fecha, String estado) {
 		super();
 		this.nombre = nombre;
@@ -43,6 +57,30 @@ public class Recurso implements Serializable {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	public String getDias() {
+		return dias;
+	}
+
+	public void setDias(String dias) {
+		this.dias = dias;
+	}
+
+	public String getFechas() {
+		return fechas;
+	}
+
+	public void setFechas(String fechas) {
+		this.fechas = fechas;
 	}
 
 	public String getFecha() {

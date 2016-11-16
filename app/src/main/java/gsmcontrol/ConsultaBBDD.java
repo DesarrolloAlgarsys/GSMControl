@@ -72,6 +72,7 @@ public class ConsultaBBDD extends AsyncTask<String, Integer, Integer> {
 					JSONArray ja2 = ja.getJSONArray(i);
 					// Creamos el recurso a partir del JSONArray de la posición iésima
 					Recurso recurso = new Recurso(ja2.getString(0), ja2.getString(1));
+					//Recurso recurso = new Recurso(ja2.getString(0), ja2.getString(1), ja2.getString(2), ja2.getString(3), ja2.getString(5));
 					// Añadimos el nuevo recurso al ArrayList de recursos
 					recursos.add(recurso);
 				} catch (JSONException e) {

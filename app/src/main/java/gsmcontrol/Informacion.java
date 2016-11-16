@@ -3,6 +3,8 @@ package gsmcontrol;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -71,9 +73,27 @@ public class Informacion extends Activity {
 			case android.R.id.home:
 				finish();
 				break;
-			case R.id.inicio:
-				Intent inicio = new Intent(this,MainActivity.class);
-				startActivity(inicio);
+			case R.id.cambio_numero:
+				//Abrimos la Activity inicial, en la que se preguntará de nuevo
+				// el teléfono. Enviamos una bandera para que la Activity borre
+				// el fichero donde está guardado el teléfono anterior y escriba uno nuevo
+				AlertDialog.Builder NumberBuilder = new AlertDialog.Builder(Informacion.this);
+				NumberBuilder.setTitle(R.string.change_number);
+				NumberBuilder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				NumberBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Intent number = new Intent(Informacion.this, ActivityComprobaciones.class);
+						number.putExtra("Cambio","nuevo");
+						startActivity(number);
+					}
+				});
+				NumberBuilder.create().show();
 				break;
 			case R.id.admin:
 				// Abrimos la Activity que contiene el WebBrowser hacia la

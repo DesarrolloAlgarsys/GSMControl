@@ -28,8 +28,6 @@
     <string name="data_ok">Datos cargados correctamente</string>
     <string name="resources">Recursos de</string>
     <string name="no_resource">Ningún recurso asociado al número</string>
-    <string name="make_call">Realizar llamada</string>
-    <string name="call_confirmation">Llamar a </string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="ask_number">Introduzca su número de teléfono</string>
@@ -48,5 +46,6 @@
     <string name="info">Información</string>
     <string name="admin">Admin</string>
     <string name="history">Historial</string>
+    <string name="change_number">¿Quieres cambiar el número de teléfono?</string>
 
 </resources>
