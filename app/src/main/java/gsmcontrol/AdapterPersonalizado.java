@@ -1,7 +1,6 @@
 package gsmcontrol;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import app.gsmcontrol.R;
 
@@ -18,6 +17,8 @@ public class AdapterPersonalizado extends ArrayAdapter<Recurso> {
 	// Esta clase recibe el contexto de la aplicación y el ArrayList de recursos
 	private Context contexto;
 	private ArrayList<Recurso> recursos;
+	String schedule;
+	String dates;
 	
 	public AdapterPersonalizado(Context context, int resource,ArrayList<Recurso> recursos) {
 		super(context, resource, recursos);
@@ -54,11 +55,24 @@ public class AdapterPersonalizado extends ArrayAdapter<Recurso> {
 
 		// Asignamos a cada TextView lo que corresponda
 		nombreRecurso.setText(recurso.getNombre());
-		String schedule = contexto.getString(R.string.schedule) + "no disponible"; //recurso.getHorario()
+		if (recurso.getHoraIni().equals(recurso.getHoraFin())){
+			schedule = contexto.getString(R.string.schedule) + "Todo el día";
+		}else{
+			schedule = contexto.getString(R.string.schedule) +"De "+ recurso.getHoraIni() + " a " + recurso.getHoraFin();
+		}
 		horarioRecurso.setText(schedule);
-		String days = contexto.getString(R.string.week_day) + "no disponible"; //recurso.getDias()
+		String days = contexto.getString(R.string.week_day) + recurso.getDias();
 		diasRecurso.setText(days);
-		String dates = contexto.getString(R.string.dates) + "no disponible"; //recurso.getFechas()
+		String fechaIni = recurso.getFechaIni().substring(0, 10);
+		String FechaIni = fechaIni.substring(8, 10) + "/" + fechaIni.substring(5, 7) + "/" + fechaIni.substring(0, 4);
+		String fechaFin = recurso.getFechaFin().substring(0, 10);
+		String FechaFin = fechaFin.substring(8, 10) + "/" + fechaFin.substring(5, 7) + "/" + fechaFin.substring(0, 4);
+		if(fechaFin.substring(0, 4).equals("2030") && fechaIni.substring(0, 4).equals("2000")){
+			dates = contexto.getString(R.string.dates) + "Siempre";
+		}
+		else {
+			dates = contexto.getString(R.string.dates) + FechaIni + " a " + FechaFin;
+		}
 		fechasRecurso.setText(dates);
 
 		return item;

@@ -1,34 +1,25 @@
 package gsmcontrol;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 import app.gsmcontrol.R;
-
 
 //Implementamos LoadingTaskFinishedListener para hacer la consulta al historial (si procede)
 public class WebActivity extends Activity {
 
 	// Navegador web integrado
 	WebView browser;
-
 	String tel;
 
 	@Override
@@ -59,7 +50,6 @@ public class WebActivity extends Activity {
 		webSettings.setJavaScriptEnabled(true);
 
 		browser.loadUrl("http://gsmcontrol.es/testdrive/");
-
 	}
 
 	@Override

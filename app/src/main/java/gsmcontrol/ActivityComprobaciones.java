@@ -52,15 +52,14 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 			// Intentamos leer el fichero.
 			leerFichero();
 		}
+
 		// En caso de no existir el fichero:
 		// Comprobaremos el número en la base de datos y, en caso de ser
 		// correcto, lo guardamos en el fichero e iniciamos la SplashScreen
-
 		if (tel.equals("")) {
 			// Pedimos el teléfono, que posteriormente comprobaremos con la base de datos
 			pedirTelefono();
 		}
-
 		// Si el número ya existe en el fichero, iniciaremos la SplashScreen
 		else {
 			startApp();
@@ -70,13 +69,10 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 	// Función que comprueba si está conectado o no
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-
 		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
 			return true;
 		}
-
 		return false;
 	}
 
@@ -137,7 +133,6 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 						realizarllamada();
 					}
 				});
-
 		alert.setNegativeButton("Cancelar",	new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						// Si selecciona Cancelar, se sale de la aplicacion, ya
@@ -145,7 +140,6 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 						finish();
 					}
 				});
-
 		alert.setOnCancelListener(new OnCancelListener() {
 
 			// Controlamos si sale del di�logo pulsando atr�s en el tel�fono o
@@ -158,7 +152,6 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 				finish();
 			}
 		});
-
 		alert.show();
 	}
 
@@ -167,12 +160,9 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 	public void realizarllamada() {
 
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
 		alert.setIcon(android.R.drawable.sym_action_call);
-
 		alert.setTitle(R.string.validation_call);
 		alert.setMessage(R.string.validation_text);
-
 		alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				try {
@@ -192,7 +182,6 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 
 			}
 		});
-
 		alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				// Si selecciona Cancelar, se sale de la aplicación, ya
@@ -200,7 +189,6 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 				finish();
 			}
 		});
-
 		alert.setOnCancelListener(new OnCancelListener() {
 
 			// Controlamos si sale del di�logo pulsando atr�s en el tel�fono o
@@ -213,9 +201,7 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 				finish();
 			}
 		});
-
 		alert.show();
-
 	}
 
 	@Override
@@ -244,17 +230,13 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			Toast.makeText(getApplicationContext(), R.string.checking_number, Toast.LENGTH_LONG).show();
-
 			// Ejecutamos la tarea asíncrona, donde accederemos a la BBDD
 			new ConsultaTelefono(tel, ActivityComprobaciones.this).execute("0");
-
 			// Actualizamos la bandera de nuevo para mostrarlo únicamente cuando
 			// se le cambia a true al llamar
 			bandera = false;
 		}
-
 	}
 
 	// Controlaremos que, si da al botón atrás se salga app
@@ -264,9 +246,7 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 			finish();
 			return true;
 		}
-
 		return super.onKeyDown(keyCode, event);
-
 	}
 
 	// Función a la que se llama desde la tarea asíncrona para indicar que ha finalizado
@@ -278,8 +258,9 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 		} else {
 			// Si no está conectado, informa de ello
 			if (!isOnline()) {
-				Toast.makeText(this,R.string.no_internet,Toast.LENGTH_LONG).show();
-			} else {
+				Toast.makeText(this,R.string.no_internet, Toast.LENGTH_LONG).show();
+			}
+			else {
 				// Si no se ha verificado, informa de ello y vuelve a pedir el teléfono
 				Toast.makeText(this, R.string.wrong_number, Toast.LENGTH_LONG).show();
 				pedirTelefono();
@@ -289,7 +270,7 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 
 	// Con esta función, se da paso a la SplashScreen
 	private void startApp() {
-		Intent intent = new Intent(ActivityComprobaciones.this,SplashScreen.class);
+		Intent intent = new Intent(ActivityComprobaciones.this, SplashScreen.class);
 		startActivity(intent);
 		finish(); // Finalizamos para que no se pueda volver a la pantalla
 	}

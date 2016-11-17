@@ -36,16 +36,8 @@ public class ConsultaBBDD extends AsyncTask<String, Integer, Integer> {
 
 	@Override
 	protected Integer doInBackground(String... params) {
-		if (resourcesDontAlreadyExist()) {
-			downloadResources();
-		}
-
+		downloadResources();
 		return 0;
-	}
-
-	private boolean resourcesDontAlreadyExist() {
-
-		return true; // Devolvemos true para mostrar el Splash en de forma permanente (hasta que acabe)
 	}
 
 	private void downloadResources() {
@@ -71,8 +63,8 @@ public class ConsultaBBDD extends AsyncTask<String, Integer, Integer> {
 					// Accedemos al JSONArray de la posición iésima del obtenido anteriormente
 					JSONArray ja2 = ja.getJSONArray(i);
 					// Creamos el recurso a partir del JSONArray de la posición iésima
-					Recurso recurso = new Recurso(ja2.getString(0), ja2.getString(1));
-					//Recurso recurso = new Recurso(ja2.getString(0), ja2.getString(1), ja2.getString(2), ja2.getString(3), ja2.getString(5));
+					Recurso recurso = new Recurso(ja2.getString(0), ja2.getString(1), ja2.getString(2), ja2.getString(3),
+							ja2.getString(4), ja2.getString(6), ja2.getString(7));
 					// Añadimos el nuevo recurso al ArrayList de recursos
 					recursos.add(recurso);
 				} catch (JSONException e) {
@@ -90,7 +82,8 @@ public class ConsultaBBDD extends AsyncTask<String, Integer, Integer> {
 			// Dormimos un segundo cada vez para mostrar la SplashScreen ese tiempo
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException ignore) {}
+			}
+			catch (InterruptedException ignore) {}
 		}
 	}
 
@@ -105,10 +98,12 @@ public class ConsultaBBDD extends AsyncTask<String, Integer, Integer> {
 		ResponseHandler<String> responsehandler = new BasicResponseHandler();
 		try {
 			response = httpclient.execute(httpget, responsehandler);
-		} catch (ClientProtocolException e) {
+		}
+		catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

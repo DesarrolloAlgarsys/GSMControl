@@ -2,7 +2,6 @@ package gsmcontrol;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -14,9 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class ConsultaHistorial extends AsyncTask<String, Integer, Integer> {
 
@@ -50,13 +46,13 @@ public class ConsultaHistorial extends AsyncTask<String, Integer, Integer> {
 		ja = null;
 
 		// Pasamos a la función como parámetro la ruta de acceso al WebService
-		data = httpGetData("http://gsmcontrol.es/testdrive/webservices/consulta2.php?tel="
-				+ tel);
+		data = httpGetData("http://gsmcontrol.es/testdrive/webservices/consulta2.php?tel=" + tel);
 
 		if (data.length() > 0) {
 			try {
 				ja = new JSONArray(data);
-			} catch (JSONException e) {
+			}
+			catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -71,8 +67,7 @@ public class ConsultaHistorial extends AsyncTask<String, Integer, Integer> {
 					// Creamos el recurso a partir del JSONArray de la posición
 					// iésima. Utilizamos el segundo constructor, que incluye el
 					// estado y coge la fcvez del teléfono
-					Recurso recurso = new Recurso(ja2.getString(0),
-							ja2.getString(1), ja2.getString(2));
+					Recurso recurso = new Recurso(ja2.getString(0), ja2.getString(1), ja2.getString(2));
 					// Añadimos el nuevo recurso al ArrayList de recursos
 					historial.add(recurso);
 				} catch (JSONException e) {

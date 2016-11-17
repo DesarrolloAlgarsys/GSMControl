@@ -46,7 +46,7 @@
     <string name="title_activity_web">WebActivity</string>
     <string name="validation_call">Llamada de verificación</string>
     <string name="validation_text">Para verificar el número introducido, debe realizarse una llamada gratuita.\n¿Desea continuar?</string>
-    <string name="week_day">"Día de la semana: "</string>
+    <string name="week_day">"Días de la semana: "</string>
     <string name="wrong_number">Error. El número introducido no es correcto.</string>
     <string name="yes">Sí</string>
     <style name="AppBaseTheme" parent="android:Theme.Light">

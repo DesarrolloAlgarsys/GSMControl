@@ -43,15 +43,11 @@ public class PantallaCarga extends Activity implements LoadingTaskFinishedListen
 
 	// Función que comprueba si está conectado o no
 	public boolean isOnline() {
-		ConnectivityManager cm = (ConnectivityManager) this
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-
+		ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-
 		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
 			return true;
 		}
-
 		return false;
 	}
 

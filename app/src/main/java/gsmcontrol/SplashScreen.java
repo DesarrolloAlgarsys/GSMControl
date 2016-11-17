@@ -14,7 +14,6 @@ import android.os.Bundle;
 
 import app.gsmcontrol.R;
 
-
 public class SplashScreen extends Activity implements
 		LoadingTaskFinishedListener {
 
@@ -29,7 +28,6 @@ public class SplashScreen extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
 
-		
 		// La lectura y escritura del fichero se hace en memoria interna, es
 		// decir, solo es accesible desde esta aplicación, borrándose el
 		// archivo al desinstalarse la aplicación o al borrar sus datos
@@ -47,10 +45,12 @@ public class SplashScreen extends Activity implements
 			fin = new BufferedReader(new InputStreamReader(openFileInput("telefono.txt")));
 			tel = fin.readLine();
 			fin.close();
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

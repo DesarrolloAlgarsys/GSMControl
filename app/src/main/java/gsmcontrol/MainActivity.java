@@ -13,7 +13,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,9 +37,9 @@ public class MainActivity extends Activity implements LoadingTaskFinishedListene
 
 		// Si no está conectado, informa de ello
 		if (!isOnline()) {
-			Toast.makeText(
-					this, R.string.no_internet,Toast.LENGTH_LONG).show();
-		} else {
+			Toast.makeText(this, R.string.no_internet, Toast.LENGTH_LONG).show();
+		}
+		else {
 			Toast.makeText(this, R.string.data_ok, Toast.LENGTH_LONG).show();
 		}
 
@@ -71,8 +70,7 @@ public class MainActivity extends Activity implements LoadingTaskFinishedListene
 
 			// Accedemos al ListView y le asignamos el adaptador personalizado con nuestra distribución
 			ListView lv_lista = (ListView) findViewById(R.id.lv_recursos);
-			AdapterPersonalizado adaptador = new AdapterPersonalizado(this,
-					android.R.layout.simple_list_item_1, recursos);
+			AdapterPersonalizado adaptador = new AdapterPersonalizado(this, android.R.layout.simple_list_item_1, recursos);
 			lv_lista.setAdapter(adaptador);
 			lv_lista.setOnItemClickListener(new OnItemClickListener() {
 
@@ -167,21 +165,16 @@ public class MainActivity extends Activity implements LoadingTaskFinishedListene
 				startActivity(carga);
 				break;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 
 	// Función que comprueba si está conectado o no
 	public boolean isOnline() {
-		ConnectivityManager cm = (ConnectivityManager) this
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-
+		ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-
 		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
 			return true;
 		}
-
 		return false;
 	}
 
@@ -190,27 +183,24 @@ public class MainActivity extends Activity implements LoadingTaskFinishedListene
 	// accedido por el OnClick del diálogo
 	public void mostrarDialog(final Recurso recurso) {
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
 		String msg = getString(R.string.activate_confirm) + recurso.getNombre() + "?";
 		alert.setTitle(msg);
-
 		alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				try {
 					startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + recurso.getTelefono())));
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-
 		alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				// Canceled.
 
 			}
 		});
-
 		alert.show();
 	}
 

@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,7 +30,6 @@ public class AdapterHistorial extends ArrayAdapter<Recurso> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// Recurso recuperado para cada position del ArrayList de recursos
 		Recurso recurso = recursos.get(position);
-
 		// Cargamos el ListView con la distribución que hemos creado
 		LayoutInflater constructor = ((Activity) contexto).getLayoutInflater();
 		View item = constructor.inflate(R.layout.distribucion_historial, null);
@@ -57,8 +55,7 @@ public class AdapterHistorial extends ArrayAdapter<Recurso> {
 		// Hacemos pequeñas modificaciones para presentarlas en un formato específico
 		String fecha = recurso.getFecha().substring(0, 10);
 		// Formato decha: dd/mm/aaaa
-		String fechaFormateada = fecha.substring(8, 10) + "/"
-				+ fecha.substring(5, 7) + "/" + fecha.substring(0, 4);
+		String fechaFormateada = fecha.substring(8, 10) + "/" + fecha.substring(5, 7) + "/" + fecha.substring(0, 4);
 
 		// Formato hora: hh:mm
 		String hora = recurso.getFecha().substring(11, 16);
@@ -66,9 +63,7 @@ public class AdapterHistorial extends ArrayAdapter<Recurso> {
 
 		// Asignamos a cada TextView lo que corresponda
 		nombreRecurso.setText(recurso.getNombre());
-
 		fechaRecurso.setText(fechaFormateada);
-
 		horaRecurso.setText(hora);
 
 		// Asignamos un estilo u otro dependiendo de si está OK o KO

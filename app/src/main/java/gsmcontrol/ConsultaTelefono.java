@@ -1,7 +1,6 @@
 package gsmcontrol;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -9,12 +8,10 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class ConsultaTelefono extends AsyncTask<String, Integer, Integer> {
 
@@ -57,7 +54,8 @@ public class ConsultaTelefono extends AsyncTask<String, Integer, Integer> {
 			if (!jo.toString().contains("0")) {
 				comprobado = true;
 			}
-		} catch (JSONException e) {
+		}
+		catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -68,8 +66,8 @@ public class ConsultaTelefono extends AsyncTask<String, Integer, Integer> {
 			// Dormimos un segundo cada vez
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException ignore) {
 			}
+			catch (InterruptedException ignore) {}
 		}
 
 	}
@@ -94,13 +92,11 @@ public class ConsultaTelefono extends AsyncTask<String, Integer, Integer> {
 		}
 
 		return response;
-
 	}
 
 	@Override
 	protected void onProgressUpdate(Integer... values) {
 		super.onProgressUpdate(values);
-
 	}
 
 	@Override
