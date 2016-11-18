@@ -284,7 +284,6 @@ public class ActivityComprobaciones extends Activity implements	gsmcontrol.Consu
 			// se le cambia a true al llamar
 			bandera = false;
 		}
-
 	}
 
 	// Controlaremos que, si da al botón atrás se salga app
