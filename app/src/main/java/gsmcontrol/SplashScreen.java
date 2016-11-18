@@ -10,16 +10,15 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import app.gsmcontrol.R;
 
-public class SplashScreen extends Activity implements
-		LoadingTaskFinishedListener {
+public class SplashScreen extends Activity implements LoadingTaskFinishedListener {
 
-	//Telefono para pruebas. Al finalizar pruebas, dejar en blanco
-	String tel ="610228472";
-	//String tel = "";
+	String tel = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +27,6 @@ public class SplashScreen extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
 
-		// La lectura y escritura del fichero se hace en memoria interna, es
-		// decir, solo es accesible desde esta aplicación, borrándose el
-		// archivo al desinstalarse la aplicación o al borrar sus datos
 		leerFichero();
 
 		// Ejecutamos la tarea asíncrona, donde accederemos a la BBDD

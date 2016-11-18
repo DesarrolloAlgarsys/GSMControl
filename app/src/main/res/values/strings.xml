@@ -51,5 +51,6 @@
     <string name="week_day">"Días de la semana: "</string>
     <string name="dates">"Fechas autorizadas: "</string>
     <string name="activate_confirm">"¿Activar "</string>
+    <string name="loading_data">Cargando Datos</string>
 
 </resources>

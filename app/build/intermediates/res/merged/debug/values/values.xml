@@ -31,6 +31,7 @@
     <string name="info_text">GSMControl controla el acceso a edificios, gestiona la activación de recursos (puertas, pistas deportivas, encendido de luces) mediante una llamada perdida a un número de teléfono.\n\nSi eres un usuario, a través de la aplicación podrás abrir cualquier puerta de la que estéis autorizados o activar cualquier recursos al que tengais permiso, controlar el histórico de accesos y gestionar vuestra cuenta de usuario.\n\nPara los administradores de recursos (puertas, luces, pistas deportivas) podréis llevar toda la gestión de usuarios (altas y bajas), permisos (configurar horarios y permisos), controlar los accesos, etc, etc desde la app con tan solo un click.\n\nMas info en:</string>
     <string name="last_access">Últimos accesos de</string>
     <string name="llamar">Llamar</string>
+    <string name="loading_data">Cargando Datos</string>
     <string name="loading_history">Cargando historial</string>
     <string name="login">Inicio de sesión</string>
     <string name="no">No</string>
@@ -50,9 +51,13 @@
     <string name="wrong_number">Error. El número introducido no es correcto.</string>
     <string name="yes">Sí</string>
     <style name="AppBaseTheme" parent="android:Theme.Light">
-        
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
-        
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 </resources>

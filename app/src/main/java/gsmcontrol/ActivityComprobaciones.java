@@ -20,22 +20,22 @@ import android.text.Editable;
 import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import app.gsmcontrol.R;
 
-public class ActivityComprobaciones extends Activity implements gsmcontrol.ConsultaTelefono.LoadingTaskFinishedListener {
+public class ActivityComprobaciones extends Activity implements	gsmcontrol.ConsultaTelefono.LoadingTaskFinishedListener {
 
-	//Telefono para pruebas. Al finalizar pruebas, dejar en blanco
-	String tel ="610228472";
-	//String tel = "";
+	String tel = "";
 	boolean bandera = false;
 	Bundle extras;
+	String cambio = "numero ";
+	TextView cargando;
+	ProgressBar pb;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,41 +43,70 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 		ActivityComprobaciones.this.getActionBar().hide();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_comprobaciones);
-		extras=getIntent().getExtras();
+		extras = getIntent().getExtras();
+		cargando = (TextView)findViewById(R.id.Cargando);
+		pb = (ProgressBar)findViewById(R.id.progressBar);
+
+		// Intentamos leer el fichero.
+		leerFichero();
 
 		if (extras!=null){
-			tel="";
-		}
-		else {
-			// Intentamos leer el fichero.
-			leerFichero();
-		}
+			cambio=cambio+extras.getString("Cambio");
+			if (cambio.equals("numero nuevo")) {
+				// Pedimos el teléfono, que posteriormente comprobaremos con la base
+				// de datos
+				pedirTelefono();
+			}
+			else{
+				if (tel.equals("")) {
+					// Pedimos el teléfono, que posteriormente comprobaremos con la base
+					// de datos
+					pedirTelefono();
+				}
 
-		// En caso de no existir el fichero:
-		// Comprobaremos el número en la base de datos y, en caso de ser
-		// correcto, lo guardamos en el fichero e iniciamos la SplashScreen
-		if (tel.equals("")) {
-			// Pedimos el teléfono, que posteriormente comprobaremos con la base de datos
-			pedirTelefono();
+				// Si el número ya existe en el fichero
+				if (!tel.equals("")) {
+					// Iniciaremos la SplashScreen
+					startApp();
+				}
+			}
 		}
-		// Si el número ya existe en el fichero, iniciaremos la SplashScreen
 		else {
-			startApp();
+
+			// En caso de no existir el fichero:
+			// Comprobaremos el número en la base de datos y, en caso de ser
+			// correcto, lo guardamos en el fichero e iniciamos la SplashScreen
+
+			if (tel.equals("")) {
+				// Pedimos el teléfono, que posteriormente comprobaremos con la base
+				// de datos
+				pedirTelefono();
+			}
+
+			// Si el número ya existe en el fichero
+			if (!tel.equals("")) {
+				// Iniciaremos la SplashScreen
+				startApp();
+			}
 		}
 	}
 
 	// Función que comprueba si está conectado o no
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
 		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
 			return true;
 		}
+
 		return false;
 	}
 
 	public void leerFichero() {
-		// Leemos fichero (si lo hay) y guardamos el teléfono que hay guardado en él.
+		// Leemos fichero (si lo hay) y guardamos el teléfono que hay guardado
+		// en él.
 		BufferedReader fin;
 		try {
 			fin = new BufferedReader(new InputStreamReader(openFileInput("telefono.txt")));
@@ -108,7 +137,8 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 		}
 	}
 
-	// Función para pedir el teléfono al usuario en caso de no tenerlo ya guardado
+	// Función para pedir el teléfono al usuario en caso de no tenerlo ya
+	// guardado
 	public void pedirTelefono() {
 		// Pediremos el teléfono mediante un diálogo
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -133,17 +163,21 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 						realizarllamada();
 					}
 				});
+
 		alert.setNegativeButton("Cancelar",	new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						// Si selecciona Cancelar, se sale de la aplicacion, ya
-						// que necesita el número para realizar la consulta a la BBDD
+						// Canceled.
+						// Si selecciona Cancelar, se sale de la aplicación, ya
+						// que necesita el número para realizar la consulta a la
+						// BBDD
 						finish();
 					}
 				});
+
 		alert.setOnCancelListener(new OnCancelListener() {
 
-			// Controlamos si sale del di�logo pulsando atr�s en el tel�fono o
-			// pulsando fuera del di�logo para cerrarlo sin elegir opci�n
+			// Controlamos si sale del diálogo pulsando atrás en el teléfono o
+			// pulsando fuera del diálogo para cerrarlo sin elegir opción
 			@Override
 			public void onCancel(DialogInterface dialog) {
 				// TODO Auto-generated method stub
@@ -152,17 +186,21 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 				finish();
 			}
 		});
+
 		alert.show();
 	}
 
 	// Mostrará un diálogo advirtiendo de la realización de una llamada de
-	// comprobación para verificar el número introducido
+	// comprobación para verificar eúmero introducido
 	public void realizarllamada() {
 
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
 		alert.setIcon(android.R.drawable.sym_action_call);
+
 		alert.setTitle(R.string.validation_call);
 		alert.setMessage(R.string.validation_text);
+
 		alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				try {
@@ -182,17 +220,20 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 
 			}
 		});
+
 		alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
+				// Canceled.
 				// Si selecciona Cancelar, se sale de la aplicación, ya
 				// que es necesario verificar el número
 				finish();
 			}
 		});
+
 		alert.setOnCancelListener(new OnCancelListener() {
 
-			// Controlamos si sale del di�logo pulsando atr�s en el tel�fono o
-			// pulsando fuera del di�logo para cerrarlo sin elegir opci�n
+			// Controlamos si sale del diálogo pulsando atrás en el teléfono o
+			// pulsando fuera del diálogo para cerrarlo sin elegir opción
 			@Override
 			public void onCancel(DialogInterface dialog) {
 				// TODO Auto-generated method stub
@@ -201,7 +242,9 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 				finish();
 			}
 		});
+
 		alert.show();
+
 	}
 
 	@Override
@@ -222,6 +265,8 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 		// TODO Auto-generated method stub
 		super.onResume();
 		if (bandera) {
+			pb.setVisibility(View.VISIBLE);
+			cargando.setText(R.string.checking_number);
 			// Dormimos al proceso un poco para que la base de datos llegue a
 			// guardar el registro de la llamada
 			try {
@@ -230,13 +275,16 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Toast.makeText(getApplicationContext(), R.string.checking_number, Toast.LENGTH_LONG).show();
-			// Ejecutamos la tarea asíncrona, donde accederemos a la BBDD
+
+			// Ejecutamos la tarea asíncrona, donde accederemos
+			// a la BBDD
 			new ConsultaTelefono(tel, ActivityComprobaciones.this).execute("0");
+
 			// Actualizamos la bandera de nuevo para mostrarlo únicamente cuando
 			// se le cambia a true al llamar
 			bandera = false;
 		}
+
 	}
 
 	// Controlaremos que, si da al botón atrás se salga app
@@ -246,22 +294,26 @@ public class ActivityComprobaciones extends Activity implements gsmcontrol.Consu
 			finish();
 			return true;
 		}
+
 		return super.onKeyDown(keyCode, event);
+
 	}
 
-	// Función a la que se llama desde la tarea asíncrona para indicar que ha finalizado
+	// Función a la que se llama desde la tarea asíncrona para indicar que ha
+	// finalizado
 	@Override
 	public void onTaskFinished(boolean comprobado) {
 		if (comprobado) {
 			escribirFichero();
+
 			startApp();
 		} else {
 			// Si no está conectado, informa de ello
 			if (!isOnline()) {
-				Toast.makeText(this,R.string.no_internet, Toast.LENGTH_LONG).show();
-			}
-			else {
-				// Si no se ha verificado, informa de ello y vuelve a pedir el teléfono
+				Toast.makeText(this, R.string.no_internet, Toast.LENGTH_LONG).show();
+			} else {
+				// Si no se ha verificado, informa de ello y vuelve a pedir el
+				// teléfono
 				Toast.makeText(this, R.string.wrong_number, Toast.LENGTH_LONG).show();
 				pedirTelefono();
 			}
