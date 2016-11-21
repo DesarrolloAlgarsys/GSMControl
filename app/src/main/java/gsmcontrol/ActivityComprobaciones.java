@@ -3,8 +3,12 @@ package gsmcontrol;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,6 +19,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -26,6 +31,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import app.gsmcontrol.R;
 
 public class ActivityComprobaciones extends Activity implements	gsmcontrol.ConsultaTelefono.LoadingTaskFinishedListener {
@@ -36,6 +44,7 @@ public class ActivityComprobaciones extends Activity implements	gsmcontrol.Consu
 	String cambio = "numero ";
 	TextView cargando;
 	ProgressBar pb;
+	String num_inicio="";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,48 +56,8 @@ public class ActivityComprobaciones extends Activity implements	gsmcontrol.Consu
 		cargando = (TextView)findViewById(R.id.Cargando);
 		pb = (ProgressBar)findViewById(R.id.progressBar);
 
-		// Intentamos leer el fichero.
-		leerFichero();
+		new JSONTask().execute("http://gsmcontrol.es/testdrive/webservices/consulta.php?");
 
-		if (extras!=null){
-			cambio=cambio+extras.getString("Cambio");
-			if (cambio.equals("numero nuevo")) {
-				// Pedimos el teléfono, que posteriormente comprobaremos con la base
-				// de datos
-				pedirTelefono();
-			}
-			else{
-				if (tel.equals("")) {
-					// Pedimos el teléfono, que posteriormente comprobaremos con la base
-					// de datos
-					pedirTelefono();
-				}
-
-				// Si el número ya existe en el fichero
-				if (!tel.equals("")) {
-					// Iniciaremos la SplashScreen
-					startApp();
-				}
-			}
-		}
-		else {
-
-			// En caso de no existir el fichero:
-			// Comprobaremos el número en la base de datos y, en caso de ser
-			// correcto, lo guardamos en el fichero e iniciamos la SplashScreen
-
-			if (tel.equals("")) {
-				// Pedimos el teléfono, que posteriormente comprobaremos con la base
-				// de datos
-				pedirTelefono();
-			}
-
-			// Si el número ya existe en el fichero
-			if (!tel.equals("")) {
-				// Iniciaremos la SplashScreen
-				startApp();
-			}
-		}
 	}
 
 	// Función que comprueba si está conectado o no
@@ -204,7 +173,7 @@ public class ActivityComprobaciones extends Activity implements	gsmcontrol.Consu
 		alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				try {
-					Intent llamada = new Intent(Intent.ACTION_CALL, Uri.parse("tel:628101064"));
+					Intent llamada = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+num_inicio));
 					startActivity(llamada);
 					// Actualizamos la bandera para el onResume()
 					bandera = true;
@@ -325,4 +294,110 @@ public class ActivityComprobaciones extends Activity implements	gsmcontrol.Consu
 		startActivity(intent);
 		finish(); // Finalizamos para que no se pueda volver a la pantalla
 	}
+
+	public class JSONTask extends AsyncTask<String,String, String> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			HttpURLConnection connection = null;
+			BufferedReader reader = null;
+
+			try {
+				URL url = new URL(params[0]);
+				connection = (HttpURLConnection) url.openConnection();
+				connection.connect();
+				InputStream stream = connection.getInputStream();
+				reader = new BufferedReader(new InputStreamReader(stream));
+				StringBuffer buffer = new StringBuffer();
+				String line ="";
+				while ((line = reader.readLine()) != null){
+					buffer.append(line);
+				}
+
+				String finalJson = buffer.toString();
+
+				JSONObject parentObject = new JSONObject(finalJson);
+				String TlfInicio = parentObject.getString("telefono_inicio");
+
+				return TlfInicio;
+
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} finally {
+				if(connection != null) {
+					connection.disconnect();
+				}
+				try {
+					if(reader != null) {
+						reader.close();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return  null;
+		}
+
+		@Override
+		protected void onPostExecute(final String result) {
+			super.onPostExecute(result);
+			if(result != null) {
+				num_inicio=result;
+				// Intentamos leer el fichero.
+				leerFichero();
+
+				if (extras!=null){
+					cambio=cambio+extras.getString("Cambio");
+					if (cambio.equals("numero nuevo")) {
+						// Pedimos el teléfono, que posteriormente comprobaremos con la base
+						// de datos
+						pedirTelefono();
+					}
+					else{
+						if (tel.equals("")) {
+							// Pedimos el teléfono, que posteriormente comprobaremos con la base
+							// de datos
+							pedirTelefono();
+						}
+
+						// Si el número ya existe en el fichero
+						if (!tel.equals("")) {
+							// Iniciaremos la SplashScreen
+							startApp();
+						}
+					}
+				}
+				else {
+
+					// En caso de no existir el fichero:
+					// Comprobaremos el número en la base de datos y, en caso de ser
+					// correcto, lo guardamos en el fichero e iniciamos la SplashScreen
+
+					if (tel.equals("")) {
+						// Pedimos el teléfono, que posteriormente comprobaremos con la base
+						// de datos
+						pedirTelefono();
+					}
+
+					// Si el número ya existe en el fichero
+					if (!tel.equals("")) {
+						// Iniciaremos la SplashScreen
+						startApp();
+					}
+				}
+			} else {
+				Toast.makeText(getApplicationContext(), "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+
 }
