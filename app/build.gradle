@@ -8,6 +8,8 @@ android {
         applicationId "app.gsmcontrol"
         minSdkVersion 15
         targetSdkVersion 15
+        versionCode 13
+        versionName "1.3"
     }
 
     buildTypes {
